@@ -1,0 +1,85 @@
+
+<br><br>
+<h1>Administrative View: Members</h1>
+<table mat-table [dataSource]="members" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="FirstName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+            <td mat-cell *matCellDef="let mem">{{mem.FirstName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="LastName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+            <td mat-cell *matCellDef="let mem">{{mem.LastName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="SecondaryMember">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Secondary Household Member</th>
+            <td mat-cell *matCellDef="let mem">{{mem.SecondaryHouseholdMemberName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="LastPaidDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Paid Date</th>
+            <td mat-cell *matCellDef="let mem">{{mem.LastPaidDate}}</td>
+      </ng-container>
+      <ng-container matColumnDef="DateJoined">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Joined</th>
+            <td mat-cell *matCellDef="let mem">{{mem.DateJoined}}</td>
+      </ng-container>
+      <ng-container matColumnDef="MembershipType" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Membership Type</th>
+            <td mat-cell *matCellDef="let mem">{{mem.MembershipType}}</td>
+      </ng-container>
+      <ng-container matColumnDef="Status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+            <td mat-cell *matCellDef="let mem">{{mem.Status}}</td> 
+      </ng-container>
+      <ng-container matColumnDef="Email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+            <td mat-cell *matCellDef="let mem">{{mem.Email}}</td>
+      </ng-container>
+      <ng-container matColumnDef="PreferredPhone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Preferred Phone</th>
+            <td mat-cell *matCellDef="let mem">{{mem.PreferredPhone}}</td>
+      </ng-container>
+      <ng-container matColumnDef="SecondaryPhone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Secondary Phone</th>
+            <td mat-cell *matCellDef="let mem">{{mem.SecondaryPhone}}</td>
+      </ng-container>
+      <ng-container matColumnDef="StreetAddress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Street Address</th>
+            <td mat-cell *matCellDef="let mem">{{mem.StreetAddress}}</td>
+      </ng-container>
+      <ng-container matColumnDef="City">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>City</th>
+            <td mat-cell *matCellDef="let mem">{{mem.City}}</td>
+      </ng-container>
+      <ng-container matColumnDef="State">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>State</th>
+            <td mat-cell *matCellDef="let mem">{{mem.State}}</td>
+      </ng-container>
+      <ng-container matColumnDef="ZipCode" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Zip Code</th>
+            <td mat-cell *matCellDef="let mem">{{mem.ZipCode}}</td>
+      </ng-container>
+      <ng-container matColumnDef="Edit">
+            <th mat-header-cell *matHeaderCellDef>Edit</th>
+            <td mat-cell *matCellDef="let mem"> 
+                  <input type="button" value = "Delete" color='primary' (click)='deleteMember(mem.MemberID)'>   
+                  <input type="button" value = "Edit" color='primary' (click)='openUpdateDialog(mem)'>   
+            </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<div class="memberCount">
+      Number of members: {{this.memberLength}}  
+</div>
+<br><br>
+
+<button mat-raised-button (click)="openDialog()">Add New Member</button>
+
+<button mat-raised-button (click)="getEmails()">Export Email Addresses</button>
+<input matInput *ngIf="this.emails">
+<br><br>
+<div *ngIf="error" class="alert alert-danger">Database says: {{error}}</div>
+<div *ngIf="success" class="alert alert-success">Database says: {{success}}</div>
+
+<br><br><br><br>
